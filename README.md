@@ -15,7 +15,7 @@
       <br>
       <img
         src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Basic_concept_of_Kalman_filtering.svg/400px-Basic_concept_of_Kalman_filtering.svg.png"
-        alt="Basic Concept of Kalman Filtering"
+        alt="Basic Concept of Kalman Filtering" width="600px"
       />
       <sup>[1]</sup>
     </li>
