@@ -1,5 +1,7 @@
 # B.Tech-Final-year-Project
 *Project on application of Estimation algorithms in Chemical Engineering*
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 <body>
     <h1>Chemical Engineering and Estimation Algorithms</h1>
@@ -15,7 +17,7 @@
       <br>
       <img
         src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Basic_concept_of_Kalman_filtering.svg/400px-Basic_concept_of_Kalman_filtering.svg.png"
-        alt="Basic Concept of Kalman Filtering" width="600px"
+        alt="Basic Concept of Kalman Filtering" width="500px"
       />
       <sup>[1]</sup>
     </li>
@@ -125,15 +127,17 @@ Let us assume we have a system described by the following state equation:
 <h3>Results and Discussion
 </h3>
   <h4>Implementing Kalman Filter on One Dimensional moving body</h4>
+  <p><em>(refer to  Jupyter notebook named Basics)</em></p>
+
   <p>The example of a moving body was modeled in Python Code.
     The Python Code [4] was referred to and  was formulated as : 
   </p>
   <ul>
     <li>Initially, the system's state was modeled as a Gaussian distribution, as depicted in the Jupyter notebook titled "Basics." Subsequently, an error within a specified range was introduced, visually represented by a graph in the notebook.</li>
     <li>Following this, both predicted and measured values were obtained, reflecting the system's state. Gaussian multiplication was then employed to determine the optimal result, visually denoted by the dotted lines in the figure.</li>
-    <li>The subsequent analysis involved observing the variation of the optimal value as the gain (represented by K) was adjusted. The figure titled "Variation of the Optimum Value as Gain K is Changed" illustrates this variation.</li>
-    <img src="Pictures/pic15.png" alt="Custom Image" width="350px" />
-    <img src="Pictures/pic16.png" alt="Custom Image" width="350px" />
+    <li>The subsequent analysis involved observing the variation of the optimal value as the gain (represented by K) was adjusted. The figure below  illustrates this variation.</li>
+    <img src="Pictures/pic15.png" alt="Custom Image" width="400px" />
+    <img src="Pictures/pic16.png" alt="Custom Image" width="400px" />
     <li>From the insights gleaned from the graphs, it can be concluded that the optimal result is influenced by both the predicted and measured values, as well as the gain K, which reflects the level of trust or certainty in these values.</li>
    <li> Additionally, it was observed that the variance of the optimal result is typically lower (indicating higher precision) than both the predicted and measured values, as evidenced in the figure.</li>
     <li>Moreover, the figure demonstrates that when there is a higher level of certainty in one value, whether predicted or measured, the optimal graph tends to align more closely with the value characterized by higher certainty.</li>
@@ -141,12 +145,105 @@ Let us assume we have a system described by the following state equation:
 
   <h4>Implementing Kalman Filter on Second Order reaction in CSTR
   </h4>
+  <p><em>(refer to Part 1 of the Jupyter notebook named KF_UKF_Compare)</em></p>
+
+  <p>Taking the example 7.1 of a 2-state CSTR from the paper Constrained nonlinear state estimation based on the UKF approach [3]. 
+  
+  Here we study variation of  concentration in a second order reaction with time using KF.
+  </p>
+  <ul>
+  <li>The gas phase phase reaction is 2A → B  with , where k = 0.16 and the rate for the reaction is specified as r =k P<sub>a</sub><sup>2</sup></li> 
+  <li>The state vector in the above equation will be  x= [P<sub>a</sub> , P<sub>b</sub>]<sup>T</sup> and its initial value is x= [3 , 1]<sup>T</sup>
+ On applying the filter the following result was obtained-  
+</li>
+ <img src="Pictures/pic17.png" alt="Custom Image" width="400px" />
+ <li>Thus we observe from the above obtained plot that even though the initial guess of the estimation was incorrect still the  filter tends to correct the estimation which eventually approaches the measurement value . But even after correction the estimation still maintains a certain degree of error and does not attain the actual measurement value. </li>
+
+  </ul>
+
   <h4>Implementing Unscented Kalman Filter on First Order reaction 
   </h4>
+  <p><em>(refer to Part 2 of the Jupyter notebook named KF_UKF_Compare)</em></p>
+  <p>After implementing simple KF we head over to UKF which we will eventually prove is much more accurate than KF.
+
+  First UKF was implemented on a simple first order reaction system having initial concentration as 3 units and we observed the response as we changed the initial guess and the error in the model used for estimation .
+  </p>
+  <p><em>(in the code three comments named MODIFY are given , change the numerical values in the same line , to respectively change the erros in the initial guess and model error )</em></p>
+  <ul>
+  <li>Graph showing Concentration variation with time , having large deviation of initial guess  and less model error.
+  </li>
+  <img src="Pictures/pic18.png" alt="Custom Image" width="400px" />
+  <li>Graph showing Concentration variation with time , having less deviation of initial guess  and large model error.      
+  </li>
+  <img src="Pictures/pic19.png" alt="Custom Image" width="400px" />
+  <li> Graph showing Concentration variation with time , having less deviation of initial guess  and less model error.   
+  Hence best estimation   
+
+  </li>
+  <img src="Pictures/pic20.png" alt="Custom Image" width="400px" />
+  <li>Thus in figure 1 we see that the initial Concentration guess is highly inaccurate but the estimation model itself has less noise / errors hence the estimation quickly corrects itself and heads along the same path as measured value while maintaining a minimum amount of error.</li>
+
+  <li>While on observing figure 2 we see that the initial guess of the model is more accurate than the previous case but the model itself makes more noisy estimation hence we don't get a stable value i.e value which has less degree of error.</li>
+
+ <li>  From figure 3 we see that  the initial guess is accurate and the model has least error hence giving the best estimation among all the cases .</li>
+
+ <li>  Thus from the above cases we observed how variation in initial guess and the model error will affect the final results.Hence using these we will head over to solve a problem which was solved in the research paper [3].
+ </li>
+ </ul>
+
+
+
+
+
   <h4>Implementing Unscented Kalman Filter on 2 State CSTR
   </h4>
+  <p><em>(refer to  Jupyter notebook named UKF_Paper)</em></p>
+  <p> Taking the example 7.1 of a 2-state CSTR from the paper Constrained nonlinear state estimation based on the UKF approach [3]. Here we study variation of  concentration in a second order reaction with time using UKF.</p>
+  <ul>
+  <li>The gas phase phase reaction is 2A → B  with , where k = 0.16 and the rate for the reaction is specified as r =k P<sub>a</sub><sup>2</sup></li> 
+  <li>The state vector in the above equation will be  x= [P<sub>a</sub> , P<sub>b</sub>]<sup>T</sup> and its initial value is x= [3 , 1]<sup>T</sup>
+  </li>
+  <li>The other parameters were initialized as</li>
+  <img src="Pictures/pic21.png" alt="Custom Image" width="250px" />
+  <li>Thus the above problem was solved using unconstrained UKF and the following results were published by the authors [3] as shown in figure </li>
+  <img src="Pictures/pic22.png" alt="Custom Image" width="500px" /><sub>[3]</sub>
+
+   <li>On simulating the above problem using my own code for UKF the results obtained are as shown in the figures below.
+  </li>
+  <li>Graph showing partial pressure variation with time , for a second order reaction ,
+  using UKF .  
+  </li><img src="Pictures/pic23.png" alt="Custom Image" width="500px" />
+   <li>Graph showing Total pressure variation with time , for a second order reaction ,using UKF.  
+  </li><img src="Pictures/pic24.png" alt="Custom Image" width="400px" />
+ </ul>
+ <p>Thus on comparing above  figures we obtain similar results and we may make the following conclusions form these results :
+  </p>
+  <ul>
+  <li>Even though the initial guess of the partial pressure is flawed the estimation model quickly catches up to the real measurement value and always maintains it in a certain error range.</li>
+  <li>The total pressure measurement itself has some error while the estimation model in 4.10 initially tends to have a larger error; it quickly corrects itself to have least error and maintains it throughout the time interval.
+  </li>
+  <li>Hence UKF gives very accurate results.
+  </li>
+  </ul>
+  <p>Thus now we have established that UKF gives us accurate results. We will compare the results between KF and UKF to concretize that  UKF is the best estimator.
+  </p>
   <h4>Comparing Unscented Kalman Filter and Kalman Filter</h4>
-<h3>References</h3>
+  <p><em>(refer to Part 3 and Part 4 of the Jupyter notebook named KF_UKF_Compare)</em></p>
+  <p>In earlier part we solved the same problem as mentioned in the research paper [3] hence we will be comparing the results obtained  in the two simulations .</p>
+ <img src="Pictures/pic25.png" alt="Custom Image" width="600px" />
+  <p>Thus from the above figure  we can see that the initial guess of both the estimators is same but as time varies the UKF from the very start approaches them measurement values on the other hand the KF does not approach the measurement values immediately , while even on the later stages it maintains a error much more than UKF. 
+</p>
+  <h3>Project Conclusion</h3>
+
+<p>The study indicates that the Unscented Kalman Filter (UKF) algorithm outperforms the Kalman Filter (KF) algorithm in estimating reactor system states. The UKF algorithm provides more accurate and reliable estimates, particularly for systems with high non-linearities and uncertainties. Additionally, the UKF algorithm demonstrates improved computational efficiency.</p>
+
+<p>The findings have significant implications for chemical engineering applications. Accurate estimation of reactor state variables is essential for effective process control and optimization. Application filtering techniques, such as UKF, offer valuable tools for achieving this goal. The success of the UKF algorithm underscores its potential for similar chemical engineering applications.</p>
+
+<p>In conclusion, this project highlights the utility of filtering techniques in chemical engineering. The results offer insights into the performance of different filtering algorithms and stress the importance of selecting the appropriate algorithm for specific systems. Furthermore, the findings suggest that UKF may be superior to KF for complex, non-linear systems like chemical reactors. Future research can explore other application filtering techniques to further enhance state estimation accuracy and efficiency in chemical engineering.</p>
+
+
+
+  <h3>References</h3>
  
   <ol>
     <li>
