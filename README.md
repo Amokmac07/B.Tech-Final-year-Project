@@ -124,6 +124,28 @@ Let us assume we have a system described by the following state equation:
 </ol>
 <h3>Results and Discussion
 </h3>
+  <h4>Implementing Kalman Filter on One Dimensional moving body</h4>
+  <p>The example of a moving body was modeled in Python Code.
+    The Python Code [4] was referred to and  was formulated as : 
+  </p>
+  <ul>
+    <li>Initially, the system's state was modeled as a Gaussian distribution, as depicted in the Jupyter notebook titled "Basics." Subsequently, an error within a specified range was introduced, visually represented by a graph in the notebook.</li>
+    <li>Following this, both predicted and measured values were obtained, reflecting the system's state. Gaussian multiplication was then employed to determine the optimal result, visually denoted by the dotted lines in the figure.</li>
+    <li>The subsequent analysis involved observing the variation of the optimal value as the gain (represented by K) was adjusted. The figure titled "Variation of the Optimum Value as Gain K is Changed" illustrates this variation.</li>
+    <img src="Pictures/pic15.png" alt="Custom Image" width="350px" />
+    <img src="Pictures/pic16.png" alt="Custom Image" width="350px" />
+    <li>From the insights gleaned from the graphs, it can be concluded that the optimal result is influenced by both the predicted and measured values, as well as the gain K, which reflects the level of trust or certainty in these values.</li>
+   <li> Additionally, it was observed that the variance of the optimal result is typically lower (indicating higher precision) than both the predicted and measured values, as evidenced in the figure.</li>
+    <li>Moreover, the figure demonstrates that when there is a higher level of certainty in one value, whether predicted or measured, the optimal graph tends to align more closely with the value characterized by higher certainty.</li>
+  </ul>
+
+  <h4>Implementing Kalman Filter on Second Order reaction in CSTR
+  </h4>
+  <h4>Implementing Unscented Kalman Filter on First Order reaction 
+  </h4>
+  <h4>Implementing Unscented Kalman Filter on 2 State CSTR
+  </h4>
+  <h4>Comparing Unscented Kalman Filter and Kalman Filter</h4>
 <h3>References</h3>
  
   <ol>
