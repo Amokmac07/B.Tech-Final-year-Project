@@ -1,8 +1,5 @@
 # B.Tech-Final-year-Project
 *Project on application of Estimation algorithms in Chemical Engineering*
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
 <body>
     <h1>Chemical Engineering and Estimation Algorithms</h1>
     <p>Chemical engineering is a discipline that applies mathematical models and techniques to optimize chemical processes. It requires a deep understanding of chemistry, physics, and mathematics.</p>
